@@ -1,0 +1,5 @@
+when an user logs in
+it should be greeted
+
+when 'Jim' logs in
+it should say 'wuzup'
