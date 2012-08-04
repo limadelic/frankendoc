@@ -17,7 +17,7 @@ class @Runner
     finally
       process.removeListener 'uncaughtException', @exception
 
-  run_step: fibrous (@step) ->
+  run_step: (@step) ->
 
     return @missing() unless @is_implemented()?
 

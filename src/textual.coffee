@@ -10,9 +10,13 @@ runner = new Runner
 sut = new Login
 files = new Files
 
-for test in files.tests
-  steps = parser.parse test.content
-  results = runner.run_steps sut, steps
-  report test.name, results
-  return
+require 'fibrous'
+Fiber = require 'fibers'
+
+Fiber( ->
+  for test in files.tests
+    steps = parser.parse test.content
+    results = runner.run_steps sut, steps
+    report test.name, results
+).run()
 
