@@ -1,3 +1,4 @@
+fibrous = require 'fibrous'
 { MethodMatcher } = require './method_matcher'
 { Result } = require './result'
 
@@ -16,7 +17,7 @@ class @Runner
     finally
       process.removeListener 'uncaughtException', @exception
 
-  run_step: (@step) ->
+  run_step: fibrous (@step) ->
 
     return @missing() unless @is_implemented()?
 

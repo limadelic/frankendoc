@@ -13,7 +13,7 @@ class exports.Parser
     @parse_lines @tokenize test
     @results
 
-  tokenize: (test) -> _.compact test.split '\n'
+  tokenize: (test) -> _.compact test.split '\r\n'
 
   parse_lines: (steps) -> @parse_line step for step in steps
 

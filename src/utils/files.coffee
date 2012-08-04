@@ -1,5 +1,5 @@
 fs = require 'fs'
-{ join } = require 'path'
+path = require 'path'
 
 class @Files
 
@@ -13,7 +13,12 @@ class @Files
   is_sut: (file) -> file.match /\.(js|coffee)/
 
   find_files: (dir) -> for file in fs.readdirSync dir
-    file = join dir, file
+    file = path.join dir, file
     @find_files file if @is_dir file
-    @tests.push file if @is_test file
+    @add_test file if @is_test file
     @suts.push file if @is_sut file
+
+  add_test: (file) -> @tests.push
+    name: path.basename file, '.txt'
+    content: fs.readFileSync file, 'utf8'
+
