@@ -8,3 +8,6 @@ global.settings =
   '''
 
   port: process.env.PORT or 3001
+  tests_dir: process.argv[2] or '.'
+
+settings.fixtures_dir = settings.tests_dir + '/fixtures'
