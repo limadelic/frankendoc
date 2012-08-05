@@ -4,6 +4,6 @@
   |   _|  -__|_   _|   _|  |  |  _  |  |
   |____|_____|__.__|____|_____|___._|__|
 ```
-textual
+Textual
 =======
-Writing test that you can read
+Writing readable tests
