@@ -4,12 +4,13 @@ _ = require 'underscore'
 
 class exports.Parser
 
-  constructor: ->
+  setup: ->
     @results = []
     @steps = new StepParser @results
     @funcs = new FuncParser @steps
 
   parse: (test) ->
+    @setup()
     @parse_lines @tokenize test
     @results
 

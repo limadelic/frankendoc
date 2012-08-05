@@ -1,3 +1,6 @@
+require 'fibrous'
+Fiber = require 'fibers'
+
 require './settings'
 { Files } = require './utils/files'
 { Parser } = require './parsers/parser'
@@ -10,9 +13,6 @@ runner = new Runner
 sut = new Login
 files = new Files
 report = new Report
-
-require 'fibrous'
-Fiber = require 'fibers'
 
 Fiber( ->
 
