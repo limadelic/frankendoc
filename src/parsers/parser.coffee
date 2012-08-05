@@ -2,7 +2,7 @@ _ = require 'underscore'
 { StepParser } = require './step_parser'
 { FuncParser } = require './func_parser'
 
-class exports.Parser
+class @Parser
 
   setup: ->
     @results = []

@@ -14,8 +14,7 @@ sut = new Login
 files = new Files
 report = new Report
 
-Fiber( ->
-
+run = ->
   for test in files.tests
     steps = parser.parse test.content
     results = runner.run_steps sut, steps
@@ -23,5 +22,5 @@ Fiber( ->
 
   report.totals()
 
-).run()
+Fiber(run).run()
 
