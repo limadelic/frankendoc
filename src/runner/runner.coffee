@@ -1,4 +1,3 @@
-fibrous = require 'fibrous'
 { MethodMatcher } = require './method_matcher'
 { Result } = require './result'
 
