@@ -7,8 +7,6 @@ users_msg =
 
 class @Login
 
-  x: 42
-
   'when an user logs in': -> @msg = users_msg.default
 
   'it should be greeted': -> @msg.should.not.be.undefined
