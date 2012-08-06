@@ -18,9 +18,8 @@ run = ->
   suts.load files.suts
 
   for test in files.tests
-    sut = suts.new()[0]
     steps = parser.parse test.content
-    results = runner.run_steps sut, steps
+    results = runner.run_steps suts.new(), steps
     report.test test.name, results
 
   report.totals()

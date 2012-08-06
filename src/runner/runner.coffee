@@ -7,7 +7,7 @@ class @Runner
     @method_matcher = new MethodMatcher
     @result = new Result
 
-  run_steps: (@sut, steps) ->
+  run_steps: (@suts, steps) ->
     try
       process.on 'uncaughtException', @exception
 
@@ -34,7 +34,13 @@ class @Runner
 
   exception: (e) => @done e
 
-  is_implemented: -> @method = @method_matcher.match @sut, @step.name
+  is_implemented: ->
+    for sut in @suts
+      @sut = sut
+      @method = @method_matcher.match sut, @step.name
+      return true if @method?
+    false
+
 
   is_async: -> @method.length is @step.args.length + 1
 
