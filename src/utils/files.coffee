@@ -10,7 +10,7 @@ class @Files
 
   is_dir: (file) -> fs.statSync(file).isDirectory()
   is_test: (file) -> file.match /\.txt$/
-  is_sut: (file) -> file.match /\.(js|coffee)/
+  is_sut: (file) -> file.match /\.(js|coffee)$/
 
   find_files: (dir) -> for file in fs.readdirSync dir
     file = path.join dir, file
