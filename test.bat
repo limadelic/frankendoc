@@ -1,2 +1,2 @@
-coffee textual examples %*
+coffee contextual examples %*
 

@@ -1,5 +1,5 @@
 {
-    "name": "textual",
+    "name": "textual-spec",
     "version": "0.0.1",
     "description" : "specs written in plain text",
     "repository" : { "type" : "git", "url" : "https://github.com/limadelic/textual.git" },
@@ -16,7 +16,7 @@
         "coffee-script": "latest",
         "fibers": "latest",
         "fibrous": "latest",
-        "underscore": "latest",
+        "underscore": "latest"
     },
     "devDependencies": {
         "should": "latest"
@@ -28,5 +28,10 @@
     "scripts": {
         "pretest": "coffee -cl -o lib src",
         "test": "test"
+    },
+    "main" : "./lib/textual",
+    "bin" : {
+        "decaf" : "./bin/textual",
+        "decaf-js" : "./bin/textual-js"
     }
 }
