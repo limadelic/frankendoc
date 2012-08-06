@@ -1,11 +1,10 @@
 { MethodMatcher } = require './method_matcher'
-{ Result } = require './result'
+result = require './result'
 
 class @Runner
 
   constructor: ->
     @method_matcher = new MethodMatcher
-    @result = new Result
 
   run_steps: (@suts, steps) ->
     try
@@ -18,7 +17,7 @@ class @Runner
 
   run_step: (@step) ->
 
-    return @missing() unless @is_implemented()?
+    return @pending() unless @is_implemented()
 
     try
 
@@ -28,9 +27,9 @@ class @Runner
     catch e
       @fail e
 
-  missing: -> @result.missing @step
-  pass: -> @result.passed @step
-  fail: (e) -> @result.failed @step, e
+  pending: -> result.pending @step
+  pass: -> result.passed @step
+  fail: (e) -> result.failed @step, e
 
   exception: (e) => @done e
 

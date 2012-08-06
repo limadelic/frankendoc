@@ -31,7 +31,7 @@
     },
     "main" : "./lib/contextual",
     "bin" : {
-        "decaf" : "./bin/contextual",
-        "decaf-js" : "./bin/contextual-js"
+        "contextual" : "./bin/contextual",
+        "contextual-js" : "./bin/contextual-js"
     }
 }
