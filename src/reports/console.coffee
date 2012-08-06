@@ -1,7 +1,7 @@
 class @Report
 
   constructor: ->
-    @total = @failures = @pending = 0
+    @total = @passed = @failures = @pending = 0
     @empty_line()
 
   test: (@name, @results) ->
@@ -21,7 +21,9 @@ class @Report
       @pending_steps.push result if result.pending
       @failed_steps.push result if result.failed
 
-  test_passed: -> console.log ' √ ' + @name
+  test_passed: ->
+    @passed++
+    console.log ' √ ' + @name
 
   test_failed: ->
     @failures++
@@ -39,10 +41,11 @@ class @Report
 
   totals: ->
     @empty_line()
-    passed = @total - @failures - @pending
-    console.log @total + ' tests, ' +
-      passed + ' passed, ' +
+    console.log(
+      @total + ' tests, ' +
+      @passed + ' passed, ' +
       @failures + ' failed, ' +
       @pending + ' pending'
+    )
 
   empty_line: -> console.log ' '

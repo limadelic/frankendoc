@@ -1,6 +1,6 @@
 {
     "name": "contextual",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description" : "specs written in plain text",
     "repository" : { "type" : "git", "url" : "https://github.com/limadelic/contextual.git" },
     "keywords" : ["testing", "atdd", "bdd"],
