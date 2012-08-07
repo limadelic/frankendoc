@@ -1,5 +1,11 @@
-when an user logs in
+Simple steps
+
+When an user logs in
 it should be greeted
 
-when 'Jim' logs in
+this is a pending step
+
+Steps with args
+
+When 'Jim' logs in
 it should say 'wuzup'

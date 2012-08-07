@@ -4,4 +4,6 @@ class @MethodMatcher
 
   literal: -> @sut[@step] if @sut[@step]?
 
-  regex: -> return @sut[method] for method of @sut when @step.match method
+  regex: ->
+    for method of @sut when @step.match new RegExp method, 'i'
+      return @sut[method]
