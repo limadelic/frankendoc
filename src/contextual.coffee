@@ -10,17 +10,20 @@ require './settings'
 
 parser = new Parser
 runner = new Runner
-suts = new Classes
 files = new Files
+suts = new Classes
 report = new Report
 
 run = ->
+
   suts.load files.suts
 
   for test in files.tests
     steps = parser.parse test.content
+
+    report.start test.name
     results = runner.run_steps suts.new(), steps
-    report.test test.name, results
+    report.stop results
 
   report.totals()
 
