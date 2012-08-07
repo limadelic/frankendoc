@@ -26,7 +26,6 @@ class @Report
 
   stop: (@results) ->
     @record_time()
-    @parse_results()
     @set_status()
     @report_test()
     @report_unsuccessful_steps()
@@ -35,17 +34,11 @@ class @Report
     @duration = new Date - @started
     @total.time += @duration
 
-  parse_results: ->
-    @failed_steps = []
-    @pending_steps = []
-    for result in @results
-      @pending_steps.push result if result.pending
-      @failed_steps.push result if result.failed
-
   set_status: ->
-    if @failed_steps.length then @status = 'failed'
-    else if @pending_steps.length then @status = 'pending'
-    else @status = 'passed'
+    @status = 'passed'
+    for result in @results when not result.passed
+      return @status = 'failed' if result.failed
+      @status = 'pending'
 
   report_test: ->
     @total.tests++
@@ -53,10 +46,8 @@ class @Report
     console.log @color @icons[@status] + @name + ' (' + @duration + 'ms)'
 
   report_unsuccessful_steps: ->
-    for result in @pending_steps
-      console.log '     ' + result.step + ': pending'
-    for result in @failed_steps
-      console.log '     ' + result.step + ': ' + result.message
+    for result in @results when not result.passed
+      console.log '     ' + result.step + ': ' + (result.message ? 'pending')
 
   totals: ->
     @empty_line()
