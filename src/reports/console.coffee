@@ -14,6 +14,13 @@ class @Report
     failed: ' x '
     pending: ' o '
 
+  colors:
+    passed: 92
+    failed: 91
+    pending: 93
+
+  color: (text) -> '\u001b[' + @colors[@status] + 'm' + text + '\u001b[0m'
+
   start: (@name) ->
     @started = new Date
 
@@ -43,7 +50,7 @@ class @Report
   report_test: ->
     @total.tests++
     @total[@status]++
-    console.log @icons[@status] + @name + ' (' + @duration + 'ms)'
+    console.log @color @icons[@status] + @name + ' (' + @duration + 'ms)'
 
   report_unsuccessful_steps: ->
     for result in @pending_steps
