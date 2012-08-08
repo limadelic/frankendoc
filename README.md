@@ -7,8 +7,8 @@ ____________  ___   _   _  _   __ _____ _   _______ _____ _____
 \_|   \_| \_\_| |_/\_| \_/\_| \_/\____/\_| \_/___/  \___/ \____/
 ```
 
-Frankendoc allows making your documents executable.   
-Just point it to a folder and it will pick the docs along with the glue code.  
+> Frankendoc allows making your documents executable.   
+> Just point it to a folder and it will pick the docs along with the glue code.  
 
 ## Install
 ```
