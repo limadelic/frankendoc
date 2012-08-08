@@ -1,2 +1,2 @@
-coffee contextual docs\*.md %*
+coffee frankendoc docs\*.md %*
 
