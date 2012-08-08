@@ -9,4 +9,16 @@ ____________  ___   _   _  _   __ _____ _   _______ _____ _____
 
 Frankendoc allows making your documents executable.   
 Just point it to a folder and it will pick the docs along with the glue code.  
+
+## Install
+```
+npm install -g frankendoc
+```
+
+## Run
+```
+> frankendoc [folder]\[extension]
+```
+
+## Cocumentation
 Frankendoc is used to test itself, please check the [docs](https://github.com/limadelic/frankendoc/tree/master/docs) folder for examples of how to use it.
