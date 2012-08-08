@@ -10,7 +10,7 @@ it should be greeted
 ```
 # Pending Steps
 
-Pending steps are declared as fields instead of a functions  
+Pending steps are declared as fields instead of as functions  
 A document with pending steps will render yellow in the console output  
 The field's value will be included in the output  
 
