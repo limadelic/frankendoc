@@ -20,5 +20,5 @@ npm install -g frankendoc
 > frankendoc [folder]\[extension]
 ```
 
-## Cocumentation
+## Documentation
 Frankendoc is used to test itself, please check the [docs](https://github.com/limadelic/frankendoc/tree/master/docs) folder for examples of how to use it.
