@@ -1,10 +1,10 @@
 # Regular Expressions
 
-Regexes can be used inside an [Step](https://github.com/limadelic/contextual/blob/master/docs/Steps.md) declaration  
+Regexes can be used inside an [Step](https://github.com/limadelic/frankendoc/blob/master/docs/Steps.md) declaration  
 They allow to tie grammatical variations to the same step  
 
 
-**Example** [ [Login](https://github.com/limadelic/contextual/blob/master/docs/src/login.coffee) ]
+**Example** [ [Login](https://github.com/limadelic/frankendoc/blob/master/docs/src/login.coffee) ]
 ```
 when she logs in
 it should greet her
