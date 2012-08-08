@@ -1,10 +1,12 @@
 ```
-                  __               __               __ 
-.----.-----.-----|  |_.-----.--.--|  |_.--.--.---.-|  |
-|  __|  _  |     |   _|  -__|_   _|   _|  |  |  _  |  |
-|____|_____|__|__|____|_____|__.__|____|_____|___._|__|
+____________  ___   _   _  _   __ _____ _   _______ _____ _____ 
+|  ___| ___ \/ _ \ | \ | || | / /|  ___| \ | |  _  \  _  /  __ \
+| |_  | |_/ / /_\ \|  \| || |/ / | |__ |  \| | | | | | | | /  \/
+|  _| |    /|  _  || . ` ||    \ |  __|| . ` | | | | | | | |    
+| |   | |\ \| | | || |\  || |\  \| |___| |\  | |/ /\ \_/ / \__/\
+\_|   \_| \_\_| |_/\_| \_/\_| \_/\____/\_| \_/___/  \___/ \____/
 ```
 
-Contextual allows making your documents executable.   
+Frankendoc allows making your documents executable.   
 Just point it to a folder and it will pick the docs along with the glue code.  
-Contextual is used to test itself, please check the [docs](https://github.com/limadelic/contextual/tree/master/docs) folder for examples of how to use it.
+Frankendoc is used to test itself, please check the [docs](https://github.com/limadelic/frankendoc/tree/master/docs) folder for examples of how to use it.
