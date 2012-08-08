@@ -1,2 +1,2 @@
-coffee contextual examples %*
+coffee contextual examples\*.md %*
 
