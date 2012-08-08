@@ -1,8 +1,8 @@
 {
-    "name": "contextual",
+    "name": "frankendoc",
     "version": "0.1.0",
-    "description" : "specs written in plain text",
-    "repository" : { "type" : "git", "url" : "https://github.com/limadelic/contextual.git" },
+    "description" : "bringing documents alive",
+    "repository" : { "type" : "git", "url" : "https://github.com/limadelic/frankendoc.git" },
     "keywords" : ["testing", "atdd", "bdd"],
     "author" : "limadelic <limadelic@gmail.com>",
     "contributors" : [
@@ -29,9 +29,9 @@
         "pretest": "coffee -cl -o lib src",
         "test": "test"
     },
-    "main" : "./lib/contextual",
+    "main" : "./lib/frankendoc",
     "bin" : {
-        "contextual" : "./bin/contextual",
-        "contextual-js" : "./bin/contextual-js"
+        "franken" : "./bin/franken",
+        "franken-js" : "./bin/franken-js"
     }
 }
