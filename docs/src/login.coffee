@@ -13,9 +13,7 @@ class @Login
 
   'when @x logs in': (user) -> @msg = users_msg[user]
 
-  'it should say @x': (msg, done) -> process.nextTick =>
-    msg.should.eql @msg
-    done()
+  'it should say @x': (msg) -> msg.should.eql @msg
 
   'when .* logs in': -> @['when an user logs in']()
 
