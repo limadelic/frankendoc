@@ -9,6 +9,3 @@ Add an extra arg to those steps and a callback will be provided
 Read any file  
 Verify 'docs\async.md' contains 'Async Code'  
 ```
-
-
-
