@@ -1,13 +1,11 @@
 _ = require 'underscore'
 { StepParser } = require './step_parser'
-{ FuncParser } = require './func_parser'
 
 class @Parser
 
   setup: ->
     @results = []
     @steps = new StepParser @results
-    @funcs = new FuncParser @steps
 
   parse: (test) ->
     @setup()
@@ -16,9 +14,4 @@ class @Parser
 
   tokenize: (test) -> _.compact test.split '\r\n'
 
-  parse_lines: (steps) -> @parse_line step for step in steps
-
-  parse_line: (line) ->
-    @funcs.parse(line) ?
-    @steps.parse(line)
-
+  parse_lines: (steps) -> @steps.parse step.trim() for step in steps
