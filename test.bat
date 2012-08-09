@@ -1,1 +1,1 @@
-coffee frankendoc docs\*.md %*
+coffee frank docs\*.md %*

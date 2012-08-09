@@ -31,7 +31,7 @@
     },
     "main" : "./lib/frankendoc",
     "bin" : {
-        "frankendoc" : "./bin/frankendoc",
-        "frankendoc-js" : "./bin/frankendoc-js"
+        "frank" : "./bin/frank",
+        "frank-js" : "./bin/frank-js"
     }
 }
