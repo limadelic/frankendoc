@@ -17,15 +17,15 @@ npm install -g frankendoc
 
 ## Run
 ```
-> frankendoc [folder]\[extension]
+> frank [folder]\[extension]
 
-> fankendoc
+> frank
   picks *.txt in current folder
 
-> fankendoc *.doc
+> frank *.doc
   picks *.doc in current folder
 
-> fankendoc docs\*.md
+> frank docs\*.md
   picks *.md in docs
 ```
 
