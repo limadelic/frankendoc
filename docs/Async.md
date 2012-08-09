@@ -1,6 +1,6 @@
 # Async Code
 
-Every [Step](https://github.com/limadelic/frankendoc/blob/master/docs/Steps.md) is executed secuentially    
+Every [Step](https://github.com/limadelic/frankendoc/blob/master/docs/Steps.md) is executed sequentially    
 When executing async code, a callback is needed to signal that the step is done  
 Add an extra arg to those steps and a callback will be provided  
 
