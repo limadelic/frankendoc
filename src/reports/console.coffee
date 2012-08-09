@@ -3,7 +3,7 @@ class @Report
   constructor: ->
     @empty_line()
     @total =
-      tests: 0
+      docs: 0
       passed: 0
       failed: 0
       pending: 0
@@ -27,7 +27,7 @@ class @Report
   stop: (@results) ->
     @record_time()
     @set_status()
-    @report_test()
+    @report_doc()
     @report_unsuccessful_steps()
 
   record_time: ->
@@ -40,8 +40,8 @@ class @Report
       return @status = 'failed' if result.failed
       @status = 'pending'
 
-  report_test: ->
-    @total.tests++
+  report_doc: ->
+    @total.docs++
     @total[@status]++
     console.log @color @icons[@status] + @name + ' (' + @duration + 'ms)'
 
@@ -52,7 +52,7 @@ class @Report
   totals: ->
     @empty_line()
     console.log(
-      @total.tests + ' tests, ' +
+      @total.docs + ' docs, ' +
       @total.passed + ' passed, ' +
       @total.failed + ' failed, ' +
       @total.pending + ' pending ' +
