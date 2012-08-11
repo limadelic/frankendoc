@@ -1,1 +1,1 @@
-require './src/frankendoc'
+require('./src/frankendoc').frank()

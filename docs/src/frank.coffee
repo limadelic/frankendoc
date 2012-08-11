@@ -1,4 +1,4 @@
 class @Frank
   '> frank docs/confluence': ->
-    settings.dir = 'docs/confluence'
+    settings.docs.root = 'docs/confluence'
     require '../../frank'
