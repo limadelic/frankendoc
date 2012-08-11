@@ -7,14 +7,14 @@ class @Files
     @tests = []
     @suts = []
     @parse_settings()
-    @find_files settings.dir
+    @find_files settings.docs.root
 
   parse_settings: ->
-    ext = path.extname settings.dir
+    ext = path.extname settings.docs.root
     if ext.length
-      settings.dir = path.dirname settings.dir
-      settings.doc_type = ext
-    @doc_type = new RegExp "\\#{settings.doc_type}$"
+      settings.docs.root = path.dirname settings.docs.root
+      settings.docs.type = ext
+    @doc_type = new RegExp "\\#{settings.docs.type}$"
 
   is_dir: -> fs.statSync(@file).isDirectory()
   is_test: -> @file.match @doc_type
@@ -27,7 +27,7 @@ class @Files
     @add_sut() if @is_sut()
 
   add_test: -> @tests.push
-    name: path.basename @file, settings.doc_type
+    name: path.basename @file, settings.docs.type
     content: fs.readFileSync @file, 'utf8'
 
   add_sut: -> @suts.push @file

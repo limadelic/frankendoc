@@ -8,8 +8,7 @@ global.settings =
   | |   | |\ \| | | || |\  || |\  \| |___| |\  | |/ /\ \_/ / \__/\
   \_|   \_| \_\_| |_/\_| \_/\_| \_/\____/\_| \_/___/  \___/ \____/
   '''
-
-  port: process.env.PORT or 3001
-  dir: process.argv[2] or '.'
-  doc_type: '.txt'
-
+  docs:
+    source: 'files'
+    root: process.argv[2] or '.'
+    type: '.txt'
