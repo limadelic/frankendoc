@@ -1,13 +1,14 @@
 require 'fibrous'
 Fiber = require 'fibers'
 
-require './settings'
+{ Settings } = require './utils/settings'
 { Files } = require './utils/files'
 { Classes } = require './utils/classes'
 { Parser } = require './parsers/parser'
 { Runner } = require './runner/runner'
 { Report } = require './reports/console'
 
+settings = new Settings
 parser = new Parser
 runner = new Runner
 files = new Files
@@ -16,6 +17,8 @@ report = new Report
 
 run = ->
 
+  settings.load()
+  files.load()
   suts.load files.suts
 
   for test in files.tests

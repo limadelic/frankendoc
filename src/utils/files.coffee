@@ -6,15 +6,10 @@ class @Files
   constructor: ->
     @tests = []
     @suts = []
-    @parse_settings()
-    @find_files settings.docs.root
-
-  parse_settings: ->
-    ext = path.extname settings.docs.root
-    if ext.length
-      settings.docs.root = path.dirname settings.docs.root
-      settings.docs.type = ext
+  
+  load: -> 
     @doc_type = new RegExp "\\#{settings.docs.type}$"
+    @find_files settings.docs.root
 
   is_dir: -> fs.statSync(@file).isDirectory()
   is_test: -> @file.match @doc_type
