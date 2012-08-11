@@ -18,7 +18,7 @@ npm install -g frankendoc
 
 ## Run
 ```
-> frank [folder]\[extension]
+> frank [folder]/[extension]
 
 > frank
   picks *.txt in current folder
@@ -26,7 +26,7 @@ npm install -g frankendoc
 > frank *.doc
   picks *.doc in current folder
 
-> frank docs\*.md
+> frank docs/*.md
   picks *.md in docs
 ```
 
