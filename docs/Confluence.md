@@ -9,7 +9,7 @@ But lets KISS it for now
 # User Settings
 
 Confluence needs some settings  
-Some approach like [mocha.opts](http://visionmedia.github.com/mocha/) sounds attractive  
+An approach like [mocha.opts](http://visionmedia.github.com/mocha/) sounds attractive  
 But in the name of laziness lets just add a [settings](https://github.com/limadelic/frankendoc/blob/master/docs/confluence/settings.coffee) file to the root folder  
 
 # Running the Docs
