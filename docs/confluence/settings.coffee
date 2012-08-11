@@ -6,4 +6,4 @@
     user: 'test'
     pass: 'test'
   code:
-    dir: 'docs\src'
+    src: 'docs\src'
