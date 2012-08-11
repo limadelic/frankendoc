@@ -1,7 +1,7 @@
 @settings =
   docs:
     source: 'confluence'
-    server: 'confluence'
+    host: 'confluence'
     root: 'frankendoc'
     user: 'test'
     pass: 'test'
