@@ -16,7 +16,7 @@ But in the name of laziness lets just add a [settings](https://github.com/limade
 
 Now we just need to point frank to the desired folder
 
-**Example** [ [Run](https://github.com/limadelic/frankendoc/blob/master/docs/src/run.coffee) ]
+**Example** [ [Frank](https://github.com/limadelic/frankendoc/blob/master/docs/src/frank.coffee) ]
 ```
-> frank docs\confluence
+> frank docs/confluence
 ```
