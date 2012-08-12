@@ -6,4 +6,4 @@
     user: 'test'
     pass: 'test'
   code:
-    src: 'docs/src'
+    root: 'docs/src'
