@@ -14,11 +14,11 @@ class @Files
     @find_files @file, ext, add if @is_dir()
     add() if @file.match ext
 
-  load: ->
-    @load_docs()
-    @load_code()
+  read: ->
+    @read_docs()
+    @read_code()
 
-  load_docs: ->
+  read_docs: ->
     return unless settings.docs.source is 'files'
 
     docs_type = new RegExp "\\#{settings.docs.type}$"
@@ -29,7 +29,7 @@ class @Files
     name: path.basename @file, settings.docs.type
     content: fs.readFileSync @file, 'utf8'
 
-  load_code: ->
+  read_code: ->
     @find_files settings.code.root, /\.(js|coffee)$/, =>
       @code.push @file
 

@@ -1,9 +1,9 @@
 require 'fibrous'
 Fiber = require 'fibers'
 
-settings = require './utils/settings'
-{ Files } = require './utils/files'
-{ Classes } = require './utils/classes'
+settings = require './readers/settings'
+{ Files } = require './readers/files'
+{ Classes } = require './readers/classes'
 { Parser } = require './parsers/parser'
 { Runner } = require './runner/runner'
 { Report } = require './reports/console'
@@ -17,10 +17,13 @@ class Frank
     @classes = new Classes
     @report = new Report
 
-  run: ->
-    settings.load()
-    @files.load()
-    @classes.load @files.code
+  read: ->
+    settings.read()
+    @files.read()
+    @classes.read @files.code
+
+  run:->
+    @read()
 
     for doc in @files.docs
       steps = @parser.parse doc.content

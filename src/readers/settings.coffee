@@ -4,7 +4,7 @@ _ = require 'underscore'
 
 { defaults } = require '../settings'
 
-@load = ->
+@read = ->
   set_defaults()
   merge_user_settings()
 

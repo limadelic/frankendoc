@@ -1,6 +1,6 @@
 class @Classes
 
-  load: (files) ->
+  read: (files) ->
     @classes = []
     for file in files
       module = require file
