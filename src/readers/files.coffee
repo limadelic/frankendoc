@@ -1,6 +1,8 @@
 fs = require 'fs'
 path = require 'path'
 
+{ Reader } = require './confluence'
+
 class @Files
 
   constructor: ->
@@ -18,8 +20,11 @@ class @Files
     @read_docs()
     @read_code()
 
+  use_reader: ->
+    new Reader().read()
+
   read_docs: ->
-    return unless settings.docs.source is 'files'
+    return @use_reader() if settings.docs.source isnt 'files'
 
     docs_type = new RegExp "\\#{settings.docs.type}$"
 

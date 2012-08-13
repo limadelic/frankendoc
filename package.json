@@ -16,7 +16,8 @@
         "coffee-script": "latest",
         "fibers": "latest",
         "fibrous": "latest",
-        "underscore": "latest"
+        "underscore": "latest",
+        "restler": "latest"
     },
     "devDependencies": {
         "should": "latest"
