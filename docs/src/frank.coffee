@@ -3,5 +3,5 @@
 class @Frank
   '> frank docs/confluence': ->
     settings.docs.root = 'docs/confluence'
-    #frank()
-    
+    frank()
+

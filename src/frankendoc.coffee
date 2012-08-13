@@ -9,7 +9,7 @@ settings = require './utils/settings'
 { Report } = require './reports/console'
 
 class Frank
-  
+
   constructor: ->
     @parser = new Parser
     @runner = new Runner

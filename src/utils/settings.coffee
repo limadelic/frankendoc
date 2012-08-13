@@ -2,10 +2,9 @@ fs = require 'fs'
 path = require 'path'
 _ = require 'underscore'
 
-{ settings } = require '../settings'
+{ defaults } = require '../settings'
 
 @load = ->
-  global.settings = settings
   set_defaults()
   merge_user_settings()
 
@@ -14,6 +13,8 @@ _ = require 'underscore'
 ###
 
 set_defaults = ->
+  global.settings = {}
+  merge settings, defaults
   set_docs_defaults()
   set_code_defaults()
 
@@ -32,10 +33,10 @@ set_code_defaults = ->
 ###
 
 merge_user_settings = ->
-  return unless has_user_settings() 
+  return unless has_user_settings()
   merge settings, user_settings()
 
-user_settings_file = -> path.join settings.docs.root, 'settings.coffee'
+user_settings_file = -> path.resolve settings.docs.root, 'settings.coffee'
 has_user_settings = -> fs.existsSync user_settings_file()
 user_settings = -> require(user_settings_file()).settings
 
