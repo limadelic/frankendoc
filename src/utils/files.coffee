@@ -3,27 +3,32 @@ path = require 'path'
 
 class @Files
 
-  constructor: ->
-    @tests = []
-    @suts = []
-  
-  load: -> 
-    @doc_type = new RegExp "\\#{settings.docs.type}$"
-    @find_files settings.docs.root
+  docs: []
+  code: []
 
   is_dir: -> fs.statSync(@file).isDirectory()
-  is_test: -> @file.match @doc_type
-  is_sut: -> @file.match /\.(js|coffee)$/
-
-  find_files: (dir) -> for file in fs.readdirSync dir
+  
+  find_files: (dir, ext, add) -> for file in fs.readdirSync dir
     @file = path.resolve dir, file
-    @find_files @file if @is_dir()
-    @add_test() if @is_test()
-    @add_sut() if @is_sut()
+    @find_files @file, ext, add if @is_dir()
+    add() if @file.match ext
+  
+  load: -> 
+    @load_docs()
+    @load_code()
 
-  add_test: -> @tests.push
+  load_docs: ->
+    return unless settings.docs.source is 'files'
+    
+    docs_type = new RegExp "\\#{settings.docs.type}$"
+
+    @find_files settings.docs.root, docs_type, @add_doc
+
+  add_doc: => @docs.push
     name: path.basename @file, settings.docs.type
     content: fs.readFileSync @file, 'utf8'
 
-  add_sut: -> @suts.push @file
+  load_code: ->
+    @find_files settings.code.root, /\.(js|coffee)$/, =>
+      @code.push @file
 

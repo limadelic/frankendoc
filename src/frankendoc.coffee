@@ -14,19 +14,19 @@ class Frank
     @parser = new Parser
     @runner = new Runner
     @files = new Files
-    @suts = new Classes
+    @classes = new Classes
     @report = new Report
 
   run: ->
     settings.load()
     @files.load()
-    @suts.load @files.suts
+    @classes.load @files.code
 
-    for test in @files.tests
-      steps = @parser.parse test.content
+    for doc in @files.docs
+      steps = @parser.parse doc.content
 
-      @report.start test.name
-      results = @runner.run_steps @suts.new(), steps
+      @report.start doc.name
+      results = @runner.run_steps @classes.new(), steps
       @report.stop results
 
     @report.totals()
