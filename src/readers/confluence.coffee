@@ -1,4 +1,5 @@
 rest = require 'restler'
+{ Parser } = require '../parsers/parser' 
 
 class @Reader
 
@@ -17,7 +18,7 @@ class @Reader
 
   add_doc: (data) -> @docs.push
     name: data.title    
-    content: data.body.value
+    steps: @parser.parse data.body.value
 
   root_id: (done) -> 
     uri = "#{@root_uri}/search/name?query=#{@root}&type=page"
@@ -27,6 +28,11 @@ class @Reader
  
   constructor: ->
     @docs = []
+    
+    @parser = new Parser
+      line_break: '\n'
+      code_block: /ac:name="code".*?CDATA\[([\s\S]*?)\]\]><\//g 
+
     @read_settings()
     @root_uri = "http://#{@host}/rest/prototype/1"
     

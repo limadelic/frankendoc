@@ -2,12 +2,14 @@ fs = require 'fs'
 path = require 'path'
 
 { Reader } = require './confluence'
+{ Parser } = require '../parsers/parser'
 
 class @Files
 
   constructor: ->
     @docs = []
     @code = []
+    @parser = new Parser
 
   is_dir: -> fs.statSync(@file).isDirectory()
 
@@ -23,7 +25,7 @@ class @Files
   use_reader: ->
     reader = new Reader
     reader.docs = @docs
-    #reader.read()
+    reader.read()
 
   read_docs: ->
     return @use_reader() if settings.docs.source isnt 'files'
@@ -34,7 +36,9 @@ class @Files
 
   add_doc: => @docs.push
     name: path.basename @file, settings.docs.type
-    content: fs.readFileSync @file, 'utf8'
+    steps: @parser.parse @contents()
+  
+  contents: -> fs.readFileSync @file, 'utf8'
 
   read_code: ->
     @find_files settings.code.root, /\.(js|coffee)$/, =>

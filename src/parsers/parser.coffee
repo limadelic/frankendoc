@@ -12,8 +12,15 @@ class @Parser
 
   parse: (test) ->
     @setup()
-    @parse_lines @tokenize test
+    @parse_lines @tokenize @code test
     @results
+
+  code: (test) ->
+    return test unless @opt.code_block?
+    contents = ''
+    while (match = @opt.code_block.exec test)?
+      contents += match[1] + @opt.line_break
+    contents
 
   tokenize: (test) -> _.compact test.split @opt.line_break
 
