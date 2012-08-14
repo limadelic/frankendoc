@@ -17,10 +17,10 @@ class @Parser
 
   code: (test) ->
     return test unless @opt.code_block?
-    contents = ''
+    code = ''
     while (match = @opt.code_block.exec test)?
-      contents += match[1] + @opt.line_break
-    contents
+      code += match[1] + @opt.line_break
+    code
 
   tokenize: (test) -> _.compact test.split @opt.line_break
 

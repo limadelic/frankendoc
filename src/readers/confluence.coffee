@@ -4,7 +4,8 @@ rest = require 'restler'
 class @Reader
 
   read: ->
-    @pending_docs = [ @sync.root_id() ]
+    return unless @root?
+    @pending_docs = [ @root ]
     while @pending_docs.length
       @sync.read_doc @pending_docs.shift()
 
@@ -20,12 +21,6 @@ class @Reader
     name: data.title    
     steps: @parser.parse data.body.value
 
-  root_id: (done) -> 
-    uri = "#{@root_uri}/search/name?query=#{@root}&type=page"
-    
-    rest.get(uri, @options).on 'complete', (data) ->
-      done null, data.group[0].result[0].id
- 
   constructor: ->
     @docs = []
     
