@@ -23,7 +23,7 @@ class @Files
   use_reader: ->
     reader = new Reader
     reader.docs = @docs
-    reader.read()
+    #reader.read()
 
   read_docs: ->
     return @use_reader() if settings.docs.source isnt 'files'
