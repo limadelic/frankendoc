@@ -2,18 +2,41 @@ rest = require 'restler'
 
 class @Reader
 
+  read: ->
+    @pending_docs = [ @sync.root_id() ]
+    while @pending_docs.length
+      @sync.read_doc @pending_docs.shift()
+
+  read_doc: (id, done) ->
+    uri = "#{@root_uri}/content/#{id}?expand=children"
+
+    rest.get(uri, @options).on 'complete', (data) =>
+      console.log 'crap' if data instanceof Error
+      @add_doc data
+      @pending_docs.push child.id for child in data.children.content
+      done null
+
+  add_doc: (data) -> @docs.push
+    name: data.title    
+    content: data.body.value
+
+  root_id: (done) -> 
+    uri = "#{@root_uri}/search/name?query=#{@root}&type=page"
+    
+    rest.get(uri, @options).on 'complete', (data) ->
+      done null, data.group[0].result[0].id
+ 
   constructor: ->
     @docs = []
-    @auth = 'Basic ' +
-      new Buffer(settings.docs.user + ':' + settings.docs.pass).toString 'base64'
-    @root_uri = "http://#{settings.docs.host}/confluence/rest/prototype/1"
-    @os_auth = 'os_authType=basic'
-    @search_uri = "#{@root_uri}/search/name?query=#{settings.docs.root}&#{@os_auth}"
+    @read_settings()
+    @root_uri = "http://#{@host}/rest/prototype/1"
+    
+    @auth = 'Basic ' + @encode64 @user + ':' + @pass
+    
     @options =
       headers:
-        Authorization: @auth
-        'Content-Type': 'application/json'
+        authorization: @auth
+        accept: 'application/json'
 
-  read: ->
-    rest.get(@search_uri, @options).on 'complete', (data) ->
-      console.log data
+  read_settings: -> @[setting] = settings.docs[setting] for setting of settings.docs
+  encode64: (string) -> new Buffer(string).toString 'base64'

@@ -3,7 +3,7 @@
     source: 'confluence'
     host: 'confluence'
     root: 'frankendoc'
-    user: 'test'
-    pass: 'test'
+    user: 'maykels'
+    pass: 'Ultimate01'
   code:
     root: 'docs/src'

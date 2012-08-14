@@ -21,7 +21,9 @@ class @Files
     @read_code()
 
   use_reader: ->
-    new Reader().read()
+    reader = new Reader
+    reader.docs = @docs
+    reader.read()
 
   read_docs: ->
     return @use_reader() if settings.docs.source isnt 'files'
