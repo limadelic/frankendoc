@@ -2,3 +2,5 @@
 node_modules
 lib
 *.swp
+*.swo
+confluence/settings.coffee

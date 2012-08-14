@@ -25,8 +25,8 @@ set_docs_defaults = ->
     settings.docs.type = ext
 
 set_code_defaults = ->
-  settings.code = settings.code ? {}
-  settings.code.root = settings.code.root ? settings.docs.root
+  settings.code ?= {}
+  settings.code.root ?= settings.docs.root
 
 ###
 # User settings
