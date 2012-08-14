@@ -25,6 +25,7 @@ class @Report
     @started = new Date
 
   stop: (@results) ->
+    return unless @results.length
     @record_time()
     @set_status()
     @report_doc()

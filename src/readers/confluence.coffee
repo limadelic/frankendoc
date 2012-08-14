@@ -14,12 +14,15 @@ class @Reader
 
     rest.get(uri, @options).on 'complete', (data) =>
       @add_doc data
-      @pending_docs.push child.id for child in data.children.content
+      @queue_children data
       done()
 
   add_doc: (data) -> @docs.push
     name: data.title    
     steps: @parser.parse data.body.value
+  
+  queue_children: (data) ->
+    @pending_docs.push child.id for child in data.children.content
 
   constructor: ->
     @docs = []
