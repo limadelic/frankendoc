@@ -1,1 +1,1 @@
-coffee frank docs/*.md %*
+coffee src/frank docs/*.md %*

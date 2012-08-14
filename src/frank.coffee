@@ -1,0 +1,1 @@
+require('./frankendoc').frank()
