@@ -11,10 +11,9 @@ class @Reader
     uri = "#{@root_uri}/content/#{id}?expand=children"
 
     rest.get(uri, @options).on 'complete', (data) =>
-      console.log 'crap' if data instanceof Error
       @add_doc data
       @pending_docs.push child.id for child in data.children.content
-      done null
+      done()
 
   add_doc: (data) -> @docs.push
     name: data.title    
@@ -38,5 +37,7 @@ class @Reader
         authorization: @auth
         accept: 'application/json'
 
-  read_settings: -> @[setting] = settings.docs[setting] for setting of settings.docs
+  read_settings: -> for setting of settings.docs
+    @[setting] = settings.docs[setting]
+
   encode64: (string) -> new Buffer(string).toString 'base64'
