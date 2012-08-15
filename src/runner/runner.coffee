@@ -39,8 +39,8 @@ class @Runner
 
   is_defined: ->
     for sut in @suts
-      @sut = sut
-      @method = @method_matcher.match sut, @step
+      @sut = global[sut]
+      @method = @method_matcher.match @sut, @step
       return true if @method?
     false
 

@@ -15,8 +15,10 @@ class @Files
 
   find_files: (dir, ext, add) -> for file in fs.readdirSync dir
     @file = path.resolve dir, file
-    @find_files @file, ext, add if @is_dir()
-    add() if @file.match ext
+    if @is_dir()
+      @find_files @file, ext, add
+    else if @file.match ext
+      add()
 
   read: ->
     @read_docs()
@@ -37,7 +39,7 @@ class @Files
   add_doc: => @docs.push
     name: path.basename @file, settings.docs.type
     steps: @doc.read @contents()
-  
+
   contents: -> fs.readFileSync @file, 'utf8'
 
   read_code: ->
