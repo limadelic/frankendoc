@@ -1,5 +1,5 @@
 rest = require 'restler'
-{ Parser } = require './parser' 
+{ Doc } = require './doc' 
 
 class @Reader
 
@@ -19,7 +19,7 @@ class @Reader
 
   add_doc: (data) -> @docs.push
     name: data.title    
-    steps: @parser.parse data.body.value
+    steps: @doc.read data.body.value
   
   queue_children: (data) ->
     @pending_docs.push child.id for child in data.children.content
@@ -27,7 +27,7 @@ class @Reader
   constructor: ->
     @docs = []
     
-    @parser = new Parser
+    @doc = new Doc
       line_break: '\n'
       code_block: /ac:name="code".*?CDATA\[([\s\S]*?)\]\]><\//g 
 

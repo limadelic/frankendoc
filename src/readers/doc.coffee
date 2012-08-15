@@ -1,23 +1,23 @@
 _ = require 'underscore'
 
-class @Parser
+class @Doc
 
   constructor: (@opt = {}) ->
     @opt.line_break ?= '\r\n'
 
-  parse: (test) ->
+  read: (doc) ->
     @results = []
-    @parse_lines @tokenize @code test
+    @parse_lines @tokenize @code doc
     @results
 
-  code: (test) ->
-    return test unless @opt.code_block?
+  code: (doc) ->
+    return doc unless @opt.code_block?
     code = ''
-    while (match = @opt.code_block.exec test)?
+    while (match = @opt.code_block.exec doc)?
       code += match[1] + @opt.line_break
     code
 
-  tokenize: (test) -> _.compact test.split @opt.line_break
+  tokenize: (doc) -> _.compact doc.split @opt.line_break
 
   parse_lines: (steps) -> for step in steps
     @results.push
