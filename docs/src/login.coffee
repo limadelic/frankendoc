@@ -13,7 +13,7 @@ class @Login
 
   'when (Jim|Pam) logs in': (user) -> @msg = users_msg[user]
 
-  'it should say (.*)': (msg) -> msg.should.eql @msg
+  'it should say @msg': (msg) -> msg.should.eql @msg
 
   'when .* logs in': -> @['when an user logs in']()
 
