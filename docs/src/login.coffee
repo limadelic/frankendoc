@@ -11,10 +11,10 @@ class @Login
 
   'it should be greeted': -> @msg.should.not.be.undefined
 
-  'when @x logs in': (user) -> @msg = users_msg[user]
+  'when (Jim|Pam) logs in': (user) -> @msg = users_msg[user]
 
-  'it should say @x': (msg) -> msg.should.eql @msg
+  'it should say (.*)': (msg) -> msg.should.eql @msg
 
   'when .* logs in': -> @['when an user logs in']()
 
-  'it should greet (her|him)': -> @['it should be greeted']()
+  'it should greet ?(her|him)': -> @['it should be greeted']()

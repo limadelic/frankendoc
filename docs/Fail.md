@@ -7,6 +7,6 @@ And the error message is included in the output
 
 **Example** [ [Login](https://github.com/limadelic/frankendoc/blob/master/docs/src/login.coffee) ]
 ```
-When 'Jim' logs in  
-it should say 'wuzup'  
+When Jim logs in  
+it should say wuzup  
 ```

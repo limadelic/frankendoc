@@ -6,9 +6,9 @@ They allow to tie grammatical variations to the same step
 
 **Example** [ [Login](https://github.com/limadelic/frankendoc/blob/master/docs/src/login.coffee) ]
 ```
-when she logs in
-it should greet her
+when she logs in  
+it should greet her  
 
-when 'Jim' logs in
-it should greet him
+when Jim logs in  
+it should greet him  
 ```

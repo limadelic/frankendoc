@@ -2,7 +2,7 @@ fs = require 'fs'
 path = require 'path'
 
 { Reader } = require './confluence'
-{ Parser } = require '../parsers/parser'
+{ Parser } = require './parser'
 
 class @Files
 

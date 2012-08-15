@@ -1,5 +1,5 @@
 rest = require 'restler'
-{ Parser } = require '../parsers/parser' 
+{ Parser } = require './parser' 
 
 class @Reader
 

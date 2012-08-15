@@ -7,5 +7,5 @@ Add an extra arg to those steps and a callback will be provided
 **Example** [ [Files](https://github.com/limadelic/frankendoc/blob/master/docs/src/files.coffee) ]
 ```
 Read any file  
-Verify 'docs\async.md' contains 'Async Code'  
+Verify docs\async.md contains Async Code  
 ```

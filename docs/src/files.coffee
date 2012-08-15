@@ -9,7 +9,7 @@ class @Files
       should.not.exist err
       done()
 
-  'Verify @x contains @x': (file, content, done) ->
+  'Verify (.*) contains (.*)': (file, content, done) ->
     fs.readFile file, 'utf8', (err, data) ->
       data.should.include content
       done()

@@ -1,17 +1,12 @@
 _ = require 'underscore'
-{ StepParser } = require './step_parser'
 
 class @Parser
 
   constructor: (@opt = {}) ->
     @opt.line_break ?= '\r\n'
 
-  setup: ->
-    @results = []
-    @steps = new StepParser @results
-
   parse: (test) ->
-    @setup()
+    @results = []
     @parse_lines @tokenize @code test
     @results
 
@@ -24,4 +19,7 @@ class @Parser
 
   tokenize: (test) -> _.compact test.split @opt.line_break
 
-  parse_lines: (steps) -> @steps.parse step.trim() for step in steps
+  parse_lines: (steps) -> for step in steps
+    @results.push
+      name: step.trim()
+      args: []
