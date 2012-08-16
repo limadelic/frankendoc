@@ -13,4 +13,4 @@ class @MethodMatcher
 
   matcher_for: (method) ->
     method = method.replace /@\w+/g, '(.*)'
-    new RegExp method, 'i'
+    new RegExp '^' + method + '$', 'i'
