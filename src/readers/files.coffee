@@ -16,7 +16,7 @@ class @Files
   find_files: (dir, ext, add) -> for file in fs.readdirSync dir
     @file = path.resolve dir, file
     if @is_dir()
-      @find_files @file, ext, add
+      @find_files @file, ext, add unless file is 'node_modules'
     else if @file.match ext
       add()
 

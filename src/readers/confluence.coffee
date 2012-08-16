@@ -41,7 +41,6 @@ class @Reader
         authorization: @auth
         accept: 'application/json'
 
-  read_settings: -> for setting of settings.docs
-    @[setting] = settings.docs[setting]
+  read_settings: -> @[setting] = value for setting, value of settings.docs
 
   encode64: (string) -> new Buffer(string).toString 'base64'

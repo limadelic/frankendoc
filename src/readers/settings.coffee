@@ -41,8 +41,8 @@ has_user_settings = -> fs.existsSync user_settings_file()
 user_settings = -> require(user_settings_file()).settings
 
 merge = (one, another) ->
-  for property of another
-    if _.isObject another[property] and one[property]?
-      merge one[property], another[property]
+  for property, value of another
+    if _.isObject value and one[property]?
+      merge one[property], value
     else
-      one[property] = another[property]
+      one[property] = value
