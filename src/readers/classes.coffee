@@ -12,6 +12,7 @@ class @Classes
   is_class: (symbol) -> symbol.match /^[A-Z]/
 
   new: ->
+    global.Sut = {}
     for clazz in @classes
       global[clazz.name] = new clazz
     @names

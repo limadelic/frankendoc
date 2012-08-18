@@ -1,11 +1,27 @@
 # Steps Arguments
 
-Args are single quoted tokens in a [Step](https://github.com/limadelic/contextual/blob/master/docs/Steps.md)  
-They are represented as **@x** in the declaration   
-And their values are passed in left to right order as a function parameter  
+Args are represented as matching groups in the [Step](https://github.com/limadelic/contextual/blob/master/docs/Steps.md) regex declaration  
+For simplicity the could be represented as **@any_word** which will be translated to **(.*)**
+But that does not imply a relationship with the function parameters
+Their values are passed in left to right order to the function
 
 **Example** [ [Login](https://github.com/limadelic/contextual/blob/master/docs/src/login.coffee) ]
 ```
 when Jim logs in  
 it should say Hello lizard king  
+```
+
+# Multiline Arguments
+
+Enclose multiline args between """  
+The quotes should be in a single line 
+Starting after the step
+
+**Example** [ [Login](https://github.com/limadelic/contextual/blob/master/docs/src/login.coffee) ]
+```
+when Pam logs in  
+it should say  
+"""  
+Hello turkey murderer  
+"""  
 ```

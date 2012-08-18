@@ -9,6 +9,7 @@ class @MethodMatcher
       match = @step.name.match @matcher_for method
       if match?
         @step.args = match[1..]
+        global.Sut = @sut
         return @sut[method]
 
   matcher_for: (method) ->
