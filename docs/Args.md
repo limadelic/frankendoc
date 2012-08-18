@@ -1,8 +1,8 @@
 # Steps Arguments
 
 Args are represented as matching groups in the [Step](https://github.com/limadelic/contextual/blob/master/docs/Steps.md) regex declaration  
-For simplicity the could be represented as **@any_word** which will be translated to **(.*)**
-But that does not imply a relationship with the function parameters
+For simplicity they could be represented as **@any_word** which will be translated to **(.*)**  
+But that does not imply a relationship with the function parameters  
 Their values are passed in left to right order to the function
 
 **Example** [ [Login](https://github.com/limadelic/contextual/blob/master/docs/src/login.coffee) ]
