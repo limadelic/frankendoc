@@ -15,6 +15,8 @@ class @Login
 
   'it should say @msg': (msg) -> msg.should.eql @msg
 
+  'it should say': (msg) -> msg.trim().should.eql @msg
+
   'when .* logs in': -> @['when an user logs in']()
 
   'it should greet ?(her|him)': -> @['it should be greeted']()

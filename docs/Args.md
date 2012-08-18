@@ -14,8 +14,9 @@ it should say Hello lizard king
 # Multiline Arguments
 
 Enclose multiline args between """  
-The quotes should be in a single line 
-Starting after the step
+The quotes should be in a single line starting after the step  
+There's no need to match the arg in the regex  
+It will be passed as the last parameter
 
 **Example** [ [Login](https://github.com/limadelic/contextual/blob/master/docs/src/login.coffee) ]
 ```
