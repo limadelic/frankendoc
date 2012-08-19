@@ -38,11 +38,11 @@ class @Runner
   exception: (e) => @done e
 
   is_defined: ->
-    for sut in @suts
-      @sut = global[sut]
-      @method = @method_matcher.match @sut, @step
-      return true if @method?
+    return true if @matched Sut
+    return true for sut in @suts when @matched global[sut]
     false
+
+  matched: (@sut) -> @method = @method_matcher.match @sut, @step
 
   is_implemented: -> _.isFunction @method
 

@@ -33,7 +33,7 @@ class @Doc
 
     return unless is_token or @arg?
     return @arg = '' if is_token and not @arg?
-    return @arg += line if not is_token
+    return @arg += line + @opt.line_break if not is_token
     return @add_multiline_arg()
 
   add_multiline_arg: ->
