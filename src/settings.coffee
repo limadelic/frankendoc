@@ -11,7 +11,9 @@
   '''
   docs:
     source: 'files'
-    root: process.argv[2] or '.'
+    root: '.'
     type: '.txt'
     multiline_arg: '"""'
   report: 'console'
+  code:
+    root: '.'

@@ -1,32 +1,29 @@
 fs = require 'fs'
 path = require 'path'
+{ argv } = require 'optimist' 
 _ = require 'underscore'
 
 { defaults } = require '../settings'
 
 @read = ->
-  set_defaults()
-  merge_user_settings()
-
-###
-# Defaults
-###
-
-set_defaults = ->
   global.settings = {}
   merge settings, defaults
-  set_docs_defaults()
-  set_code_defaults()
+  set_root_folder()
+  merge_user_settings()
+  merge settings, argv
 
-set_docs_defaults = ->
+###
+# Root Folder
+###
+
+set_root_folder = ->
+  return unless argv._.length
+  settings.docs.root = argv._[0]
   ext = path.extname settings.docs.root
   if ext.length
     settings.docs.root = path.dirname settings.docs.root
     settings.docs.type = ext
-
-set_code_defaults = ->
-  settings.code ?= {}
-  settings.code.root ?= settings.docs.root
+  settings.code.root = settings.docs.root
 
 ###
 # User settings
@@ -42,7 +39,7 @@ user_settings = -> require(user_settings_file()).settings
 
 merge = (one, another) ->
   for property, value of another
-    if _.isObject value and one[property]?
+    if _.isObject(value) and _.isObject(one[property])
       merge one[property], value
     else
       one[property] = value

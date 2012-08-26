@@ -1,8 +1,7 @@
-{ frank } = require '../../src/frankendoc'
+{ exec } = require 'child_process'
 
 class @Frank
 
-  '> frank @path': (path) ->
-    settings.docs.root = path
-    frank()
+  '> frank @args': (args, done) ->
+    exec 'coffee src/frank ' + args, (err, @out) -> done err
 
