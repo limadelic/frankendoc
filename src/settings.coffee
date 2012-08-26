@@ -13,3 +13,5 @@
     source: 'files'
     root: process.argv[2] or '.'
     type: '.txt'
+    multiline_arg: '"""'
+  report: 'console'

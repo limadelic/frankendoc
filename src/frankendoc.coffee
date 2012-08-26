@@ -1,22 +1,16 @@
 require 'fibrous'
 Fiber = require 'fibers'
 
-settings = require './readers/settings'
-{ Files } = require './readers/files'
-{ Classes } = require './readers/classes'
-{ Runner } = require './runner/runner'
-{ Report } = require './reports/console'
-
 class Frank
 
   constructor: ->
-    @runner = new Runner
-    @files = new Files
-    @classes = new Classes
-    @report = new Report
+    require('./readers/settings').read()
+    @runner = new (require('./runner/runner').Runner)
+    @files = new (require('./readers/files').Files)
+    @classes = new (require('./readers/classes').Classes)
+    @report = new (require('./reports/' + settings.report).Report)
 
   read: ->
-    settings.read()
     @files.read()
     @classes.read @files.code
 
