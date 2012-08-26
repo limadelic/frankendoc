@@ -31,7 +31,7 @@ class @Runner
     catch e
       @fail e
 
-  pending: -> @results.push result.pending @step, @method
+  pending: -> @results.push result.pending @step, @method()
   pass: -> @results.push result.passed @step
   fail: (e) -> @results.push result.failed @step, e
 
@@ -42,15 +42,17 @@ class @Runner
     return true for sut in @suts when @matched global[sut]
     false
 
-  matched: (@sut) -> @method = @method_matcher.match @sut, @step
+  matched: (@sut) -> @method_matcher.match @sut, @step
+  
+  method: -> @method_matcher.method
 
-  is_implemented: -> _.isFunction @method
+  is_implemented: -> _.isFunction @method()
 
-  is_async: -> @method.length is @step.args.length + 1
+  is_async: -> @method().length is @step.args.length + 1
 
   sync_call: -> @call @step.args
 
   async_call: (@done) -> @call @step.args.concat [@done]
 
-  call: (args) -> @method.apply @sut, args
+  call: (args) -> @method().apply @sut, args
 

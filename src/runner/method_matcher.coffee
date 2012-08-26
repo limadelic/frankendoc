@@ -4,7 +4,8 @@ class @MethodMatcher
     @step.args = args
     @step.args.push @step.multiline_arg if @step.multiline_arg?
     global.Sut = @sut
-    return @sut[method]
+    @method = @sut[method]
+    true
 
   match: (@sut, @step) -> @literal() ? @regex()
 
