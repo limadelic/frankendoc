@@ -2,10 +2,6 @@
 
 class @Report
 
-  constructor: ->
-    @empty_line()
-    @stats = new Stats
-
   icons:
     passed: ' √ '
     failed: ' x '
@@ -18,10 +14,14 @@ class @Report
 
   color: (text) -> '\u001b[' + @colors[@status] + 'm' + text + '\u001b[0m'
 
-  start: (@name) ->
+  start: ->
+    @empty_line()
+    @stats = new Stats
+
+  running: (@name) ->
     @stats.start()
 
-  stop: (@results) ->
+  finished: (@results) ->
     return unless @results.length
     @status = @stats.stop @results
     @report_doc()
@@ -31,10 +31,9 @@ class @Report
     console.log @color @icons[@status] + @name + ' (' + @stats.duration + 'ms)'
 
   report_unsuccessful_steps: ->
-    for result in @results when not result.passed
-      console.log '     ' + result.step + ': ' + (result.message ? 'pending')
+    console.log '     ' + msg for msg in @stats.messages()
 
-  totals: ->
+  stop: ->
     @empty_line()
     console.log(
       @stats.docs + ' docs, ' +

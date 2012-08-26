@@ -23,6 +23,10 @@ class @Stats
       return @status = 'failed' if result.failed
       @status = 'pending'
 
+  messages: ->
+    for result in @results when not result.passed
+      result.step + ': ' + (result.message ? 'pending')
+
   count: ->
     @docs++
     @[@status]++
