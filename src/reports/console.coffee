@@ -1,13 +1,10 @@
+{ Stats } = require './stats'
+
 class @Report
 
   constructor: ->
     @empty_line()
-    @total =
-      docs: 0
-      passed: 0
-      failed: 0
-      pending: 0
-      time: 0
+    @stats = new Stats
 
   icons:
     passed: ' √ '
@@ -22,29 +19,16 @@ class @Report
   color: (text) -> '\u001b[' + @colors[@status] + 'm' + text + '\u001b[0m'
 
   start: (@name) ->
-    @started = new Date
+    @stats.start()
 
   stop: (@results) ->
     return unless @results.length
-    @record_time()
-    @set_status()
+    @status = @stats.stop @results
     @report_doc()
     @report_unsuccessful_steps()
 
-  record_time: ->
-    @duration = new Date - @started
-    @total.time += @duration
-
-  set_status: ->
-    @status = 'passed'
-    for result in @results when not result.passed
-      return @status = 'failed' if result.failed
-      @status = 'pending'
-
   report_doc: ->
-    @total.docs++
-    @total[@status]++
-    console.log @color @icons[@status] + @name + ' (' + @duration + 'ms)'
+    console.log @color @icons[@status] + @name + ' (' + @stats.duration + 'ms)'
 
   report_unsuccessful_steps: ->
     for result in @results when not result.passed
@@ -53,11 +37,11 @@ class @Report
   totals: ->
     @empty_line()
     console.log(
-      @total.docs + ' docs, ' +
-      @total.passed + ' passed, ' +
-      @total.failed + ' failed, ' +
-      @total.pending + ' pending ' +
-      '(' + @total.time / 1000 + 's)'
+      @stats.docs + ' docs, ' +
+      @stats.passed + ' passed, ' +
+      @stats.failed + ' failed, ' +
+      @stats.pending + ' pending ' +
+      '(' + @stats.time / 1000 + 's)'
     )
 
   empty_line: -> console.log ' '
