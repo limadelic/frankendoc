@@ -1,5 +1,5 @@
 rest = require 'restler'
-{ Doc } = require './doc' 
+{ Docs } = require './docs' 
 
 class @Reader
 
@@ -7,36 +7,32 @@ class @Reader
     return unless @root?
     @pending_docs = [ @root ]
     while @pending_docs.length
-      doc @pending_docs.shift()
+      doc = @pending_docs.shift()
       if doc.is_suite
-        @docs.push doc
-      else
-        @sync.read_doc doc
+      then @docs.add_suite doc.name
+      else @sync.read_doc doc
+    @docs
 
   read_doc: (id, done) ->
     uri = "#{@root_uri}/content/#{id}?expand=children"
 
-    rest.get(uri, @options).on 'complete', (data) =>
-      children = @children data
-      @add_suite data if children.length
-      @add_doc data
-      @pending_docs.unshift children
+    rest.get(uri, @options).on 'complete', (@data) =>
+      @add_suite() if @has_children()
+      @add_doc()
+      @queue_children()
       done()
 
-  add_suite: (data) -> @pending_docs.unshift @docs.push 
-    name: data.title
-    is_suite: true
+  add_suite: -> @pending_docs.unshift @docs.add_suite @data.title
 
-  add_doc: (data) -> @docs.push
-    name: data.title    
-    steps: @doc.read data.body.value
+  add_doc: -> @docs.add @data.title, @data.body.value
   
-  children: (data) -> child.id for child in data.children.content
+  has_children: -> @data.children.content.length
+
+  queue_children: -> for child in @data.children.content
+    @pending_docs.unshift child.id
 
   constructor: ->
-    @docs = []
-    
-    @doc = new Doc
+    @docs = new Docs
       line_break: '\n'
       code_block: /ac:name="code".*?CDATA\[([\s\S]*?)\]\]><\//g 
 

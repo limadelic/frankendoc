@@ -11,10 +11,10 @@ class @Report
   suite: (it) -> @suites.report it
 
   start_suite: (suite) ->
-    @report "SuiteStarted name='#{@suite.name}'" 
+    @report "SuiteStarted name='#{suite.name}'" 
 
   stop_suite: (suite) ->  
-    @report "SuiteFinished name='#{@suite.name}' duration='#{@suite.duration}'" 
+    @report "SuiteFinished name='#{suite.name}' duration='#{suite.duration}'" 
   
   running: (@name) ->
     @stats.start()
@@ -25,10 +25,10 @@ class @Report
     @[@stats.stop @results]()
 
   passed: -> @report "Finished name='#{@name}' duration='#{@stats.duration}'"
-  failed: -> @report "Failed name='#{@name}' message='#{@message()}'"
-  pending: -> @report "Ignored name='#{@name}' message'#{@message()}'"
+  failed: -> @report "Failed name='#{@name}' message=\"#{@message()}\""
+  pending: -> @report "Ignored name='#{@name}' message=\"#{@message()}\""
 
-  message: -> _.escape @stats.messages().join '\n'
+  message: -> @stats.messages().join '\n'
 
   stop: ->
 

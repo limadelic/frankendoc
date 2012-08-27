@@ -2,35 +2,37 @@ fs = require 'fs'
 path = require 'path'
 
 { Reader } = require './confluence'
-{ Doc } = require './doc'
+{ Docs } = require './docs'
 
 class @Files
 
   constructor: ->
-    @docs = []
     @code = []
-    @doc = new Doc
+    @_docs = new Docs
+
+  docs: -> @_docs.docs
 
   is_dir: -> fs.statSync(@file).isDirectory()
+  skip_dir: -> @file.match /node_modules$/
 
   find_files: (dir, ext, add) -> 
     @add_suite dir
+
     for file in fs.readdirSync dir
-      @file = path.resolve dir, file
-      if @is_dir()
-        @find_files @file, ext, add unless file is 'node_modules' 
-      else if @file.match ext
-        add()
+      @find_file path.resolve(dir, file), ext, add
+    
     @add_suite dir
+
+  find_file: (@file, ext, add) ->
+    if @is_dir()
+    then @find_files(@file, ext, add) unless @skip_dir()
+    else add() if @file.match(ext)
 
   read: ->
     @read_docs()
     @read_code()
 
-  use_reader: ->
-    reader = new Reader
-    reader.docs = @docs
-    reader.read()
+  use_reader: -> @_docs = new Reader().read()
 
   read_docs: ->
     return @use_reader() if settings.docs.source isnt 'files'
@@ -39,13 +41,12 @@ class @Files
 
     @find_files settings.docs.root, docs_type, @add_doc
 
-  add_doc: => @docs.push
-    name: path.basename @file, settings.docs.type
-    steps: @doc.read @contents()
+  add_doc: => @_docs.add(
+    path.basename @file, settings.docs.type
+    @contents()
+  )
 
-  add_suite: (name) -> @docs.push
-    name: name
-    is_suite: true
+  add_suite: (name) -> @_docs.add_suite path.basename name
 
   contents: -> fs.readFileSync @file, 'utf8'
 

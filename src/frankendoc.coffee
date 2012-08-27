@@ -18,10 +18,10 @@ class Frank
     @report.start()
     @read()
 
-    console.log doc.name for doc in @files.docs
-      #if doc.is_suite
-      #then @report.suite doc
-      #else @run_doc doc
+    for doc in @files.docs()
+      if doc.is_suite
+      then @report.suite doc
+      else @run_doc doc
 
     @report.stop()
 
