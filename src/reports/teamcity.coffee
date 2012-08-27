@@ -1,14 +1,21 @@
 { Stats } = require './stats'
+{ Suites } = require './suites'
 _ = require 'underscore'
 
 class @Report
 
-  suite_name: settings.name ? 'frankendoc'
-
   start: ->
     @stats = new Stats
-    @report "SuiteStarted name='#{@suite_name}'" 
+    @suites = new Suites this
 
+  suite: (it) -> @suites.report it
+
+  start_suite: (suite) ->
+    @report "SuiteStarted name='#{@suite.name}'" 
+
+  stop_suite: (suite) ->  
+    @report "SuiteFinished name='#{@suite.name}' duration='#{@suite.duration}'" 
+  
   running: (@name) ->
     @stats.start()
     @report "Started name='#{@name}'"
@@ -24,7 +31,6 @@ class @Report
   message: -> _.escape @stats.messages().join '\n'
 
   stop: ->
-    @report "SuiteFinished name='#{@suite_name}' duration='#{@stats.time}'" 
 
   report: (message) ->
     console.log '##teamcity[test' + message + ']'

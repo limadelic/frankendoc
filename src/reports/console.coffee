@@ -18,6 +18,8 @@ class @Report
     @empty_line()
     @stats = new Stats
 
+  suite: ->
+
   running: (@name) ->
     @stats.start()
 

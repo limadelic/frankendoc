@@ -14,16 +14,21 @@ class Frank
     @files.read()
     @classes.read @files.code
 
-  run:->
+  run: ->
     @report.start()
     @read()
 
-    for doc in @files.docs
-      @report.running doc.name
-      results = @runner.run_steps @classes.new(), doc.steps
-      @report.finished results
+    console.log doc.name for doc in @files.docs
+      #if doc.is_suite
+      #then @report.suite doc
+      #else @run_doc doc
 
     @report.stop()
+
+  run_doc: (doc) ->
+    @report.running doc.name
+    results = @runner.run_steps @classes.new(), doc.steps
+    @report.finished results
 
 @frank = -> Fiber(-> new Frank().run()).run()
 

@@ -13,12 +13,15 @@ class @Files
 
   is_dir: -> fs.statSync(@file).isDirectory()
 
-  find_files: (dir, ext, add) -> for file in fs.readdirSync dir
-    @file = path.resolve dir, file
-    if @is_dir()
-      @find_files @file, ext, add unless file is 'node_modules'
-    else if @file.match ext
-      add()
+  find_files: (dir, ext, add) -> 
+    @add_suite dir
+    for file in fs.readdirSync dir
+      @file = path.resolve dir, file
+      if @is_dir()
+        @find_files @file, ext, add unless file is 'node_modules' 
+      else if @file.match ext
+        add()
+    @add_suite dir
 
   read: ->
     @read_docs()
@@ -39,6 +42,10 @@ class @Files
   add_doc: => @docs.push
     name: path.basename @file, settings.docs.type
     steps: @doc.read @contents()
+
+  add_suite: (name) -> @docs.push
+    name: name
+    is_suite: true
 
   contents: -> fs.readFileSync @file, 'utf8'
 
