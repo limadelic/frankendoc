@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/limadelic/frankendoc.png)](http://travis-ci.org/limadelic/frankendoc)
 ```
 ____________  ___   _   _  _   __ _____ _   _______ _____ _____ 
 |  ___| ___ \/ _ \ | \ | || | / /|  ___| \ | |  _  \  _  /  __ \
