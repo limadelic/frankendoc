@@ -54,3 +54,13 @@ class @Files
     @find_files settings.code.root, /\.(js|coffee)$/, =>
       @code.push @file
 
+class Code
+
+  constructor: ->
+    @code = []
+    @files = new @File
+      ext: /\.(js|coffee)$/
+      add: (file) => @code.push file
+
+  read: -> @files.read settings.code.root
+
