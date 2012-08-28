@@ -20,15 +20,13 @@ class @Report
     @stats.start()
     @report "Started name='#{@name}'"
   
-  finished: (@results) ->
-    return unless @results.length
-    @[@stats.stop @results]()
+  finished: (@results) -> @[@stats.stop @results]()
 
   passed: -> @report "Finished name='#{@name}' duration='#{@stats.duration}'"
-  failed: -> @report "Failed name='#{@name}' message=\"#{@message()}\""
-  pending: -> @report "Ignored name='#{@name}' message=\"#{@message()}\""
+  failed: -> @report "Failed name='#{@name}' message='#{@message()}'"
+  pending: -> @report "Ignored name='#{@name}' message='#{@message()}'"
 
-  message: -> @stats.messages().join '\n'
+  message: -> _.escape @stats.messages().join '\n'
 
   stop: ->
 
