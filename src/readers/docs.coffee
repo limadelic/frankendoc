@@ -1,5 +1,27 @@
-{ Doc } = require './doc'
+fs = require 'fs'
+path = require 'path'
 _ = require 'underscore'
+{ Doc } = require './doc'
+{ Files } = require './files'
+
+@read = ->
+  @docs = new @Docs
+  files = new Files
+    
+    ext: new RegExp "\\#{settings.docs.type}$"
+    
+    found: (file) => @docs.add(
+      path.basename file, settings.docs.type
+      fs.readFileSync file, 'utf8'
+    )
+
+    start: (dir) => @docs.add_suite path.basename dir
+    end: (dir) => @docs.add_suite path.basename dir
+
+
+  files.read settings.docs.root
+  @docs.docs
+
 
 class @Docs
 

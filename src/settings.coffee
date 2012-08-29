@@ -10,10 +10,11 @@
                                           bringing documents alive
   '''
   docs:
-    source: 'files'
+    reader: 'docs'
     root: '.'
     type: '.txt'
     multiline_arg: '"""'
   report: 'console'
   code:
+    reader: 'code'
     root: '.'

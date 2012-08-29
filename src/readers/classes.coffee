@@ -1,6 +1,6 @@
 class @Classes
 
-  read: (files) ->
+  constructor: (files) ->
     @classes = []
     @names = []
     for file in files

@@ -5,30 +5,26 @@ class Frank
 
   constructor: ->
     require('./readers/settings').read()
+    @docs = require('./readers/' + settings.docs.reader).read()
+    @code = require('./readers/' + settings.code.reader).read()
     @runner = new (require('./runner/runner').Runner)
-    @files = new (require('./readers/files').Files)
-    @classes = new (require('./readers/classes').Classes)
     @report = new (require('./reports/' + settings.report).Report)
-
-  read: ->
-    @files.read()
-    @classes.read @files.code
 
   run: ->
     @report.start()
-    @read()
-
-    for doc in @files.docs()
-      if doc.is_suite
-      then @report.suite doc
-      else @run_doc doc
-
+    @run_docs()
     @report.stop()
+
+  run_docs: -> for doc in @docs
+    if doc.is_suite
+    then @report.suite doc
+    else @run_doc doc
 
   run_doc: (doc) ->
     @report.running doc.name
-    results = @runner.run_steps @classes.new(), doc.steps
-    @report.finished results
+    @report.finished @run_steps doc.steps
+
+  run_steps: (steps) -> @runner.run_steps @code.new(), steps
 
 @frank = -> Fiber(-> new Frank().run()).run()
 

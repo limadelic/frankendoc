@@ -1,12 +1,14 @@
-{ Files } = require 'files'
+{ Files } = require './files'
+{ Classes } = require './classes'
 
-class @Code
+@read = -> new Classes read_files()  
 
-  constructor: ->
+read_files = ->
+
     @code = []
-    @files = new @Files
+    files = new Files
       ext: /\.(js|coffee)$/
-      add: (file) => @code.push file
+      found: (file) => @code.push file
 
-  read: -> @files.read settings.code.root
-
+    files.read settings.code.root
+    @code
