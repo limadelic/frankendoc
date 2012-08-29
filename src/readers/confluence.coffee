@@ -1,7 +1,9 @@
 rest = require 'restler'
 { Docs } = require './docs' 
 
-class @Reader
+@read = -> new Confluence().read()
+
+class Confluence
 
   read: ->
     return unless @root?
@@ -11,7 +13,7 @@ class @Reader
       if doc.is_suite
       then @docs.add_suite doc.name
       else @sync.read_doc doc
-    @docs
+    @docs.docs
 
   read_doc: (id, done) ->
     uri = "#{@root_uri}/content/#{id}?expand=children"

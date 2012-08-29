@@ -1,6 +1,6 @@
 @settings =
   docs:
-    source: 'confluence'
+    reader: 'confluence'
     host: 'confluence'
     root: '69174693'
     user: process.env.user
