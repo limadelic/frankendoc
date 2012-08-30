@@ -1,7 +1,6 @@
-{ exec } = require 'child_process'
+{ $ } = require '../../src/utils/shell'
 
 class @Frank
 
-  '> frank @args': (args, done) ->
-    exec 'coffee src/frank ' + args, (err, @out) -> done err
-
+  '> frank @args': (args) ->
+    $ 'coffee src/frank ' + args
