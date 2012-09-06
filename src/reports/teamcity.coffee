@@ -16,7 +16,8 @@ class @Report
   stop_suite: (suite) ->  
     @report "SuiteFinished name='#{suite.name}' duration='#{suite.duration}'" 
   
-  running: (@name) ->
+  running: (name) ->
+    @name = @escape name
     @stats.start()
     @report "Started name='#{@name}'"
   
@@ -26,9 +27,21 @@ class @Report
   failed: -> @report "Failed name='#{@name}' message='#{@message()}'"
   pending: -> @report "Ignored name='#{@name}' message='#{@message()}'"
 
-  message: -> _.escape @stats.messages().join '\n'
+  message: -> @escape @stats.messages().join '\n'
 
   stop: ->
 
   report: (message) ->
     console.log '##teamcity[test' + message + ']'
+
+  escape: (s) -> s
+    .replace(/\|/g, "||")
+    .replace(/\n/g, "|n")
+    .replace(/\r/g, "|r")
+    .replace(/\[/g, "|[")
+    .replace(/\]/g, "|]")
+    .replace(/\u0085/g, "|x")
+    .replace(/\u2028/g, "|l")
+    .replace(/\u2029/g, "|p")
+    .replace(/'/g, "|'")
+
