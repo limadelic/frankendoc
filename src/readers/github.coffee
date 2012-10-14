@@ -16,8 +16,8 @@ class Github
 
   clone: -> $ 'git clone ' + settings.docs.repo
   
-  cleanup: -> $ @rmdir() + settings.docs.root
+  cleanup: -> $ @rmdir() + ' ' + settings.docs.root
   
-  rmdir: -> if @windows() then 'rd /s /q ' else 'rm -r -f '
+  rmdir: -> if @windows() then 'rd /s /q' else 'rm -rf'
   
   windows: -> process.platform[0..2] is 'win'

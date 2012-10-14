@@ -2,5 +2,5 @@
 
 class @Frank
 
-  '> frank @args': (args) ->
+  '[>\$] frank @args': (args) ->
     $ 'coffee src/frank ' + args

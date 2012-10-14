@@ -1,5 +1,5 @@
 rest = require 'restler'
-{ Docs } = require './docs' 
+{ Docs } = require './docs'
 
 @read = -> new Confluence().read()
 
@@ -36,7 +36,7 @@ class Confluence
   constructor: ->
     @docs = new Docs
       line_break: '\n'
-      code_block: /ac:name="code".*?CDATA\[([\s\S]*?)\]\]><\//g 
+      code_block: /ac:name="code".*?CDATA\[([\s\S]*?)\]\]><\//g
 
     @read_settings()
     @root_uri = "http://#{@host}/rest/prototype/1"

@@ -5,6 +5,7 @@ class @Doc
   constructor: (@opt = {}) ->
     @opt.line_break ?= '\r\n'
     @opt.multiline_arg ?= '"""'
+    @opt.code_block = settings.docs.code_block ? @opt.code_block
 
   read: (doc) ->
     @steps = []
@@ -14,6 +15,7 @@ class @Doc
   code: (doc) ->
     return doc unless @opt.code_block?
     code = ''
+    @opt.code_block.exec doc
     while (match = @opt.code_block.exec doc)?
       code += match[1] + @opt.line_break
     code
@@ -21,7 +23,7 @@ class @Doc
   tokenize: (doc) -> _.compact doc.split @opt.line_break
 
   read_lines: (lines) -> for line in lines
-    @read_multiline_arg(line) ? 
+    @read_multiline_arg(line) ?
     @add(line)
 
   add: (line) -> @steps.push
@@ -29,7 +31,7 @@ class @Doc
     args: []
   
   read_multiline_arg: (line) ->
-    is_token = line.trim() is @opt.multiline_arg 
+    is_token = line.trim() is @opt.multiline_arg
 
     return unless is_token or @arg?
     return @arg = '' if is_token and not @arg?

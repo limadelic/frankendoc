@@ -29,13 +29,13 @@ class @Docs
     @docs = []
     @doc = new Doc opt
 
-  add: (name, content) -> 
+  add: (name, content) ->
     @docs.push
       name: name
       steps: @doc.read content
     @last()
 
-  add_suite: (name) -> 
+  add_suite: (name) ->
     return if @removed_empty_suite(name)?
     
     @docs.push

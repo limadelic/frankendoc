@@ -9,7 +9,7 @@ class @Files
   is_dir: -> fs.statSync(@file).isDirectory()
   skip_dir: -> @file.match /node_modules$/
 
-  read: (dir) -> 
+  read: (dir) ->
     @start? dir
 
     for file in fs.readdirSync dir
