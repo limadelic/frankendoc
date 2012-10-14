@@ -15,7 +15,6 @@ class @Doc
   code: (doc) ->
     return doc unless @opt.code_block?
     code = ''
-    @opt.code_block.exec doc
     while (match = @opt.code_block.exec doc)?
       code += match[1] + @opt.line_break
     code
