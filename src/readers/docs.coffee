@@ -30,10 +30,15 @@ class @Docs
     @doc = new Doc opt
 
   add: (name, content) ->
+    return if @filter name
+
     @docs.push
       name: name
       steps: @doc.read content
     @last()
+
+  filter: (name) ->
+    settings.only? and not name.match settings.only
 
   add_suite: (name) ->
     return if @removed_empty_suite(name)?
