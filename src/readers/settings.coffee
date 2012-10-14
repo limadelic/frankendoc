@@ -39,7 +39,9 @@ user_settings = -> require(user_settings_file()).settings
 
 merge = (one, another) ->
   for property, value of another
-    if _.isObject(value) and _.isObject(one[property])
+    if is_object(value) and is_object(one[property])
       merge one[property], value
     else
       one[property] = value
+
+is_object = (o) -> toString.call(o) is '[object Object]'

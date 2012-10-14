@@ -3,4 +3,5 @@
 class @Frank
 
   '[>\$] frank @args': (args) ->
-    $ 'coffee src/frank ' + args
+    console.log args
+    console.log $ 'coffee src/frank ' + args
