@@ -2,6 +2,6 @@
 
 class @Frank
 
-  '[>\$] frank @args': (args) ->
-    console.log args
+  '[>\$] frank @args': (args, output) ->
+    console.log output
     console.log $ 'coffee src/frank ' + args

@@ -1,9 +1,25 @@
 fs = require 'fs'
 path = require 'path'
-{ argv } = require 'optimist' 
 _ = require 'underscore'
 
 { defaults } = require '../settings'
+
+usage = '''
+  Usage: frank [docs] [options] 
+
+  Docs: [docs.root\[docs.type]]
+
+    shortcut to set root & type properties in settings.docs 
+
+  Options: 
+
+    these become settings properties
+'''
+
+optimist = require 'optimist'
+argv = optimist.usage(usage).argv
+
+optimist.showHelp()
 
 @read = ->
   global.settings = {}
