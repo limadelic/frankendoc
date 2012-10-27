@@ -13,7 +13,7 @@
     reader: 'docs'
     root: '.'
     type: '.txt'
-    multiline_arg: /^"""$/
+    multiline_arg: /^"{3}$/
   report: 'console'
   code:
     reader: 'code'
