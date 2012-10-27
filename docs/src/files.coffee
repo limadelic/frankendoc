@@ -13,3 +13,6 @@ class @Files
     fs.readFile file, 'utf8', (err, data) ->
       data.should.include content
       done()
+
+  verify_contains: (file, content) ->
+    fs.readFileSync(file, 'utf8').should.include content

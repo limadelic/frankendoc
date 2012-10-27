@@ -7,9 +7,9 @@ class @Frank
     $ 'coffee src/frank ' + args
 
   '@defaults =': (settings) ->
-    defaults = fs.readFileSync __dirname + '/../../src/settings.coffee', 'UTF8'
-    defaults.should.include settings
+    settings_file = __dirname + '/../../src/settings.coffee'
+    Files.verify_contains settings_file, settings
 
   '@settings =': (settings) ->
-    actual_settings = fs.readFileSync __dirname + '/../settings.coffee', 'UTF8'
-    actual_settings.should.include settings
+    settings_file = __dirname + '/../settings.coffee'
+    Files.verify_contains settings_file, settings
