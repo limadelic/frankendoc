@@ -5,21 +5,35 @@ _ = require 'underscore'
 { defaults } = require '../settings'
 
 usage = '''
-  Usage: frank [docs] [options] 
 
-  Docs: [docs.root\[docs.type]]
+Usage: frank [docs] [options] 
 
-    shortcut to set root & type properties in settings.docs 
+Docs: [docs.root\\[docs.type]]
 
-  Options: 
+  shortcut to set root & type properties in settings.docs 
 
-    these become settings properties
-'''
+  --docs.root              docs root folder [.]
+  --docs.type              extension of doc files [*.txt]
+
+Options: 
+
+  these become settings properties
+  
+  -h, --help               output usage information
+  -r, --report <name>      select report output [console]
+  -o, --only <pattern>     only run docs matching <pattern>'''
 
 optimist = require 'optimist'
-argv = optimist.usage(usage).argv
+argv = optimist
+  .usage(usage)
+  .alias('h', 'help')
+  .alias('r', 'report')
+  .alias('o', 'only')
+  .argv
 
-optimist.showHelp()
+if argv.h?
+  optimist.showHelp()
+  process.exit()
 
 @read = ->
   global.settings = {}
