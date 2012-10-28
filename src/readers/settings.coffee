@@ -3,44 +3,51 @@ path = require 'path'
 _ = require 'underscore'
 
 { defaults } = require '../settings'
-
-usage = '''
-
-Usage: frank [docs] [options] 
-
-Docs: [docs.root\\[docs.type]]
-
-  shortcut to set root & type properties in settings.docs 
-
-  --docs.root              docs root folder [.]
-  --docs.type              extension of doc files [*.txt]
-
-Options: 
-
-  these become settings properties
-  
-  -h, --help               output usage information
-  -r, --report <name>      select report output [console]
-  -o, --only <pattern>     only run docs matching <pattern>'''
-
-optimist = require 'optimist'
-argv = optimist
-  .usage(usage)
-  .alias('h', 'help')
-  .alias('r', 'report')
-  .alias('o', 'only')
-  .argv
-
-if argv.h?
-  optimist.showHelp()
-  process.exit()
+argv = {}
 
 @read = ->
   global.settings = {}
+  read_argv()
   merge settings, defaults
   set_root_folder()
   merge_user_settings()
   merge settings, argv
+
+###
+# Command line
+###
+
+read_argv = ->
+  
+  usage = '''
+
+  Usage: frank [docs] [options] 
+
+  Docs: [docs.root\\[docs.type]]
+
+    shortcut to set root & type properties in settings.docs 
+
+    --docs.root              docs root folder [.]
+    --docs.type              extension of doc files [*.txt]
+
+  Options: 
+
+    these become settings properties
+    
+    -h, --help               output usage information
+    -r, --report <name>      select report output [console]
+    -o, --only <pattern>     only run docs matching <pattern>
+  '''
+
+  argv = require('optimist')
+    .alias('h', 'help')
+    .alias('r', 'report')
+    .alias('o', 'only')
+    .argv
+
+  if argv.help?
+    console.log usage
+    process.exit()
 
 ###
 # Root Folder

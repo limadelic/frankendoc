@@ -1,11 +1,11 @@
+_ = require 'underscore'
 { $ } = require '../../src/utils/shell'
 
 class @Frank
 
   '[>\$] frank @args': (args, output) ->
-    output = output.replace /\r/g, ''
-    out = $ 'coffee src/frank ' + args
-    out.should.include output
+    $('coffee src/frank ' + args)
+      .compact().should.include output.compact()
 
   '@defaults =': (settings) ->
     settings_file = __dirname + '/../../src/settings.coffee'
@@ -14,3 +14,9 @@ class @Frank
   '@settings =': (settings) ->
     settings_file = __dirname + '/../settings.coffee'
     Files.verify_contains settings_file, settings
+
+  String.prototype.compact = -> _
+    .compact(
+      @replace(/\r/g, '')
+      .split('\n'))
+    .join('\n')
