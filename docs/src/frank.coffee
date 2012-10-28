@@ -4,8 +4,8 @@ _ = require 'underscore'
 class @Frank
 
   '[>\$] frank @args': (args, output) ->
-    $('coffee src/frank ' + args)
-      .compact().should.include output.compact()
+    compact($ 'coffee src/frank ' + args)
+      .should.include compact output
 
   '@defaults =': (settings) ->
     settings_file = __dirname + '/../../src/settings.coffee'
@@ -15,8 +15,8 @@ class @Frank
     settings_file = __dirname + '/../settings.coffee'
     Files.verify_contains settings_file, settings
 
-  String.prototype.compact = -> _
-    .compact(
-      @replace(/\r/g, '')
+  compact = (string) -> _
+    .compact(string
+      .replace(/\r/g, '')
       .split('\n'))
     .join('\n')
