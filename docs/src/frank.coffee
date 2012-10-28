@@ -1,10 +1,11 @@
-fs = require 'fs'
 { $ } = require '../../src/utils/shell'
 
 class @Frank
 
   '[>\$] frank @args': (args, output) ->
-    $ 'coffee src/frank ' + args
+    output = output.replace /\r/g, ''
+    out = $ 'coffee src/frank ' + args
+    out.should.include output
 
   '@defaults =': (settings) ->
     settings_file = __dirname + '/../../src/settings.coffee'
