@@ -33,19 +33,19 @@ frank docs/*.md
 ## Documentation
 
 ### General
-* [[Settings]]
-* [[Docs Sources]]
-* [[Fail]]
+* [Settings](https://github.com/limadelic/frankendoc/wiki/Settings)
+* [Docs Sources](https://github.com/limadelic/frankendoc/wiki/Docs-Sources)
+* [Fail](https://github.com/limadelic/frankendoc/wiki/Fail)
 
 ### Features
-* [[Steps]]
-* [[Args]]
-* [[Async]]
-* [[Regex]]
+* [Steps](https://github.com/limadelic/frankendoc/wiki/Steps)
+* [Args](https://github.com/limadelic/frankendoc/wiki/Args)
+* [Async](https://github.com/limadelic/frankendoc/wiki/Async)
+* [Regex](https://github.com/limadelic/frankendoc/wiki/Regex)
 
 ### Plugins
-* [[Github]]
-* [[Confluence]]
+* [Github](https://github.com/limadelic/frankendoc/wiki/Github)
+* [Confluence](https://github.com/limadelic/frankendoc/wiki/Confluence)
 
 ### Advanced
-* [[Reusing Steps]]
+* [Reusing Steps](https://github.com/limadelic/frankendoc/wiki/Reusing-Steps)
