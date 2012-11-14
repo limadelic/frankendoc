@@ -18,17 +18,34 @@ npm install -g frankendoc
 
 ## Run
 ```
-> frank [folder]/[extension]
+frank [folder]/[extension]
 
-> frank
+frank
   picks *.txt in current folder
 
-> frank *.doc
+frank *.doc
   picks *.doc in current folder
 
-> frank docs/*.md
+frank docs/*.md
   picks *.md in docs
 ```
 
 ## Documentation
-Frankendoc is used to test itself, please check the [docs](https://github.com/limadelic/frankendoc/tree/master/docs) folder for examples of how to use it.
+
+### General
+* [Settings](https://github.com/limadelic/frankendoc/wiki/Settings)
+* [Docs Sources](https://github.com/limadelic/frankendoc/wiki/Docs-Sources)
+* [Fail](https://github.com/limadelic/frankendoc/wiki/Fail)
+
+### Features
+* [Steps](https://github.com/limadelic/frankendoc/wiki/Steps)
+* [Args](https://github.com/limadelic/frankendoc/wiki/Args)
+* [Async](https://github.com/limadelic/frankendoc/wiki/Async)
+* [Regex](https://github.com/limadelic/frankendoc/wiki/Regex)
+
+### Plugins
+* [Github](https://github.com/limadelic/frankendoc/wiki/Github)
+* [Confluence](https://github.com/limadelic/frankendoc/wiki/Confluence)
+
+### Advanced
+* [Reusing Steps](https://github.com/limadelic/frankendoc/wiki/Reusing-Steps)
