@@ -1,6 +1,6 @@
 {
     "name": "frankendoc",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description" : "bringing documents alive",
     "repository" : { "type" : "git", "url" : "https://github.com/limadelic/frankendoc.git" },
     "keywords" : ["testing", "atdd", "bdd"],
