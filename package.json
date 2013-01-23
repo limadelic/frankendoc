@@ -21,7 +21,8 @@
         "optimist": "latest"
     },
     "devDependencies": {
-        "should": "latest"
+        "should": "latest",
+        "csharp.js": "latest"
     },
     "engines": {
         "node": ">=0.6",
